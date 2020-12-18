@@ -40,10 +40,12 @@ $ cat ~/.config/containers/begleybrothers-auth.json
 
 ## Chef-Zero OCI Usage
 
-Add the following to your Dockerfile
+1. Place your Chef cookbooks in `./cookbooks`.
+2. Place your Policyfiles in `./policyfiles`.
+3. Add the following to `./Dockerfile`:
 
 ```bash
-FROM yelgeb/chef-zero-4.8:X.Y.Z
+FROM yelgeb/chef-zero-4.8:2.1.1
 
 ENV POLICY_NAME=yours
 
