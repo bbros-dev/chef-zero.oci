@@ -5,11 +5,8 @@
 # 
 
 chef exec gem uninstall --all --force --ignore-dependencies --executables 'inspec'
-chef exec gem uninstall --all --force --ignore-dependencies --executables 'kitchen-inspec'
-chef exec gem uninstall --all --force --ignore-dependencies --executables 'kitchen-dokken'
-chef exec gem uninstall --all --force --ignore-dependencies --executables 'test-kitchen'
 
-sudo apt --purge --yes auto-remove chefdk
+apt --purge --yes auto-remove chefdk
 
 rm -rf /etc/chef
 rm -rf /opt/chefdk
