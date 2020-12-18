@@ -5,5 +5,5 @@
 Run the build script shown:
 
 ```bash
-${PWD}/scripts/build/oci/chef-zero.sh
+${PWD}/scripts/build/oci/chef-zero-3.13/build.sh
 ```
