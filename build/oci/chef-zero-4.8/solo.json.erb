@@ -1,0 +1,9 @@
+// Copyright (c) 2020-present Begley Brothers Inc.
+<%=
+require 'json'
+raise RuntimeError, 'environment variable POLICY_NAME is required' if ENV['POLICY_NAME'].nil? || ENV['POLICY_NAME'].empty?
+{
+  "policy_name": "#{ENV['POLICY_NAME']}",
+  "policy_group": "local"
+}.to_json
+%>

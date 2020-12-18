@@ -1,0 +1,55 @@
+# Chef-Zero Base Container
+# 
+# Provides a container configured for Chef-Zero driven configuration.
+# A working example is:
+#
+# ${PWD}/build/oci/template
+#
+# References:
+# https://www.bonusbits.com/wiki/HowTo:Use_Chef_Zero_in_Dockerfile_to_Build_Image_with_a_Chef_Cookbook
+
+FROM docker.io/amd64/ubuntu:18.04
+
+ENV POLICY_NAME=chef-zero
+
+## Build Cookbook Args
+#
+ARG CHEFDK_VERSION=4.8.23
+ARG CHEF_CONFIG_PATH=/opt/chef-repo
+ARG CHEFDK_SHA256=2f27da230b6a0f2cc3772f8c831e1e8beb0e5b3c334f87388f571bb12aef7788
+
+ENV CHEFDK_VERSION=${CHEFDK_VERSION} \
+    CHEF_CONFIG_PATH=${CHEF_CONFIG_PATH} \
+    CHEFDK_PACKAGE=chefdk_${CHEFDK_VERSION}-1_amd64.deb \
+    CHEFDK_SHA256=${CHEFDK_SHA256} \
+    CHEFDK_URL=https://packages.chef.io/files/stable/chefdk/${CHEFDK_VERSION}/ubuntu/18.04/
+
+## Configure bundler
+#
+ENV LANG=C.UTF-8 \
+    LOCALE=C \
+    LC_ALL=C \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3
+
+# Copy Chef-Zero configuration files into the container for chef-zero bootstrap.
+COPY client.rb /etc/chef/client.rb
+COPY solo.json.erb /var/chef/solo.json.erb
+
+COPY profiles/ /etc/profile.d/
+
+COPY scripts/ /usr/local/bin/
+
+RUN install-chef.sh \
+    && apt-cleanup.sh
+
+## Usage
+#
+# Add the following to your Dockerfile
+#
+# FROM <your-org>/chef-zero:X.Y.Z
+# RUN zero.sh \
+#     && uninstall-chef.sh \
+#     && rm -rf /usr/local/bin/zero.sh \
+#     && rm -rf /usr/local/bin/uninstall-chef.sh \
+#     && apt-cleanup.sh

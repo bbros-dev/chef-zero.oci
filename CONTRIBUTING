@@ -1,0 +1,52 @@
+# How to contribute
+
+Glad you're reading this, we welcome your ideas and input.
+
+We're happy for you to propose and work on things you're excited about, rather
+than follow our priorities.
+
+## Testing
+
+We think the [bats-core](https://github.com/bats-core/bats-core) and
+[bash-spec](https://github.com/holmesjr/bash-spec-2) are worthy candidates.
+Our internal test infrastructure isn't a good fit, so consider this one of
+several open questions.  
+
+## Submitting changes
+
+Please send a [GitHub Pull Request](https://github.com/BegleyBrothers/chef-zero.oci/pull/new/master) with a list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)).
+When you send a pull request, we will love you forever if you include tests.
+We can always use more test coverage. 
+Please try to follow our coding conventions (below) and try to make commits that
+are atomic - one feature per commit.
+
+Always write a clear log message for your commits.
+Always end with a Signed-off-by line.
+
+One-line messages are fine for small changes, but bigger changes should look
+like this:
+
+    $ git commit -m "[Evolve][Doc] A brief summary of the commit
+    > 
+    > A paragraph describing what changed and its impact.
+    >
+    > Signed-off-by: Your Name <your@email.com>"
+
+We generally use two category labels in commit messages.
+The first is a verb: Add, Remove, Evolve, Fix.
+The second is an object the verb applied to: Doc, Script or Test.
+
+## Coding conventions
+
+Start reading our code and you'll get the hang of it.
+We optimize for readability:
+
+  * We indent using two spaces (soft tabs)
+  * We assume windows and tabs are truncated at 80 characters. Not a hard rule.
+  * This is open source software. Consider the people who will read your code,
+    and make it look nice for them. It's like driving a car: 
+    Perhaps you love doing donuts when you're alone, but with passengers
+    the goal is to make the ride as smooth as possible.
+
+Thanks,
+Begley Brothers Inc.
